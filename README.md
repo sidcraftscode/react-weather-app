@@ -44,6 +44,7 @@ npm run build
 - [x] Allow user to search and add cities to see temperature/weather conditions of.
 - [x] City suggestions.
 - [ ] Fahrenheit/Celsius switch
+- [ ] Allow user to see weather data for their current location
 - [ ] Dark mode
 - [ ] Allow user to click on card to see more information (e.g. humidity, wind speed, forecast)
 
