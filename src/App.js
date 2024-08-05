@@ -66,16 +66,24 @@ function WeatherApp() {
     };
 
     const deleteCity = (cityToDelete) => {
+        const normalizeString = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    
         const updatedCities = savedCities.filter(
-            city => city.name !== cityToDelete.name || city.country !== cityToDelete.sys.country
+            city => 
+                normalizeString(city.name) !== normalizeString(cityToDelete.name) || 
+                normalizeString(city.country) !== normalizeString(cityToDelete.sys.country)
         );
         setSavedCities(updatedCities);
         localStorage.setItem('savedCities', JSON.stringify(updatedCities));
+    
         const updatedWeatherData = weather.data.filter(
-            data => data.name !== cityToDelete.name || data.sys.country !== cityToDelete.sys.country
+            data => 
+                normalizeString(data.name) !== normalizeString(cityToDelete.name) || 
+                normalizeString(data.sys.country) !== normalizeString(cityToDelete.sys.country)
         );
         setWeather({ ...weather, data: updatedWeatherData });
     };
+    
 
     const capitalizeFirstLetter = (text) => {
         if (!text) return '';
